@@ -240,6 +240,16 @@ namespace AddressBookDB_ADO.net
             int Count = (int)res;
             return Count;
         }
+        //Add AddressBookName and Type as Columns
+        public void AddAddressBookNameAndType()
+        {
+            SqlConnection Connection = new SqlConnection(@"Data Source=LAPTOP-2UH1FDRP\MSSQLSERVER01; Initial Catalog =AddressBookForADO; Integrated Security = True;");
+            connection.Open();
+            string query = @"alter table AddressBook add AddressBookName Varchar(50), AddressBookType Varchar(50);";
+            SqlCommand command = new SqlCommand(query, connection);
+            object res = command.ExecuteScalar();
+            connection.Close();
+        }
         public void GetAllContactByState()
         {
             try
