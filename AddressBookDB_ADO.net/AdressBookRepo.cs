@@ -10,6 +10,8 @@ namespace AddressBookDB_ADO.net
 {
     public class AddressBookRepo
     {
+        AddressBookModel addressmodel = new AddressBookModel();
+
         public void CreateDatabase()
         {
             try
@@ -88,7 +90,7 @@ namespace AddressBookDB_ADO.net
         {
             try
             {
-                AddressBookModel addressmodel = new AddressBookModel();
+                SqlConnection Connection = new SqlConnection(@"Data Source=LAPTOP-2UH1FDRP\MSSQLSERVER01; Initial Catalog =AddressBookForADO; Integrated Security = True;");
                 using (this.connection)
                 {
                     string Query = @"Select * from AddressBook";
@@ -126,6 +128,64 @@ namespace AddressBookDB_ADO.net
             {
                 Console.WriteLine(e.Message);
             }
+        }
+        // reference method (Reference for Update Contact / No Proper output)
+        public bool UpdateContact(AddressBookModel model)
+        {
+            try
+            {
+                SqlConnection Connection = new SqlConnection(@"Data Source=LAPTOP-2UH1FDRP\MSSQLSERVER01; Initial Catalog =AddressBookForADO; Integrated Security = True;");
+
+                using (this.connection)
+                {
+                    SqlCommand cmd = new SqlCommand("SpAddressBookEditUpdate", this.connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@FirstName", model.FirstName);
+                    cmd.Parameters.AddWithValue("@LastName", model.LastName);
+                    cmd.Parameters.AddWithValue("@Address", model.Address);
+                    cmd.Parameters.AddWithValue("@City", model.City);
+                    cmd.Parameters.AddWithValue("@State", model.State);
+                    cmd.Parameters.AddWithValue("@Zip", model.Zip);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", model.PhoneNumber);
+                    cmd.Parameters.AddWithValue("@Email", model.Email);
+                    this.connection.Open();
+                    var result = cmd.ExecuteNonQuery();
+                    this.connection.Close();
+                    if (result != 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                this.connection.Close();
+            }
+            return false;
+        }
+        // method to Update detail of already existing details
+        public string updateEmployeeDetails()
+        {
+            SqlConnection Connection = new SqlConnection(@"Data Source=LAPTOP-2UH1FDRP\MSSQLSERVER01; Initial Catalog =AddressBookForADO; Integrated Security = True;");
+            connection.Open();
+            SqlCommand command = new SqlCommand("update AddressBook set Address='XYZ Colony' where FirstName='Shravanthi'", connection);
+
+            int effectedRow = command.ExecuteNonQuery();
+            if (effectedRow == 1)
+            {
+                string query = @"Select Address from AddressBook where FirstName='Shravanthi';";
+                SqlCommand cmd = new SqlCommand(query, connection);
+                object res = cmd.ExecuteScalar();
+                connection.Close();
+                addressmodel.Address = (string)res;
+            }
+            connection.Close();
+            return (addressmodel.Address);
         }
     }
 }
