@@ -5,7 +5,7 @@ Console.WriteLine("Hello, AddressBook ADO.net!");
 AddressBookRepo address = new();
 while (true)
 {
-    Console.WriteLine("Choose the option :\n1)Create a Database\n2)Create table in DB");
+    Console.WriteLine("Choose the option :\n1)Create a Database\n2)Create table in DB\n3)Insert Values ti Table\n4)Retrieve values from Table");
     int option = Convert.ToInt16(Console.ReadLine());
     switch (option)
     {
