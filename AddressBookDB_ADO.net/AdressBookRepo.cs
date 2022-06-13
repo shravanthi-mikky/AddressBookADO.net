@@ -101,7 +101,7 @@ namespace AddressBookDB_ADO.net
                     {
                         while (datareader.Read())
                         {
-                            addressmodel.AddressBookId = datareader.GetInt32(0);
+                            addressmodel.ID = datareader.GetInt32(0);
                             addressmodel.FirstName = datareader.GetString(1);
                             addressmodel.LastName = datareader.GetString(2);
                             addressmodel.Address = datareader.GetString(3);
@@ -255,7 +255,7 @@ namespace AddressBookDB_ADO.net
                     {
                         while (datareader.Read())
                         {
-                            addressmodel.AddressBookId = datareader.GetInt32(0);
+                            addressmodel.ID = datareader.GetInt32(0);
                             addressmodel.FirstName = datareader.GetString(1);
                             addressmodel.LastName = datareader.GetString(2);
                             addressmodel.Address = datareader.GetString(3);
@@ -298,7 +298,7 @@ namespace AddressBookDB_ADO.net
                     {
                         while (datareader.Read())
                         {
-                            addressmodel.AddressBookId = datareader.GetInt32(0);
+                            addressmodel.ID = datareader.GetInt32(0);
                             addressmodel.FirstName = datareader.GetString(1);
                             addressmodel.LastName = datareader.GetString(2);
                             addressmodel.Address = datareader.GetString(3);
