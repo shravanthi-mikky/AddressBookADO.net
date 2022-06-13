@@ -110,6 +110,8 @@ namespace AddressBookDB_ADO.net
                             addressmodel.Zip = datareader.GetString(6);
                             addressmodel.PhoneNumber = datareader.GetString(7);
                             addressmodel.Email = datareader.GetString(8);
+                            addressmodel.AddressBookName = datareader.GetString(9);
+                            addressmodel.AddressBookType = datareader.GetString(10);
 
                             Console.WriteLine(addressmodel.FirstName + " " +
                                 addressmodel.LastName + " " +
@@ -118,7 +120,9 @@ namespace AddressBookDB_ADO.net
                                 addressmodel.State + " " +
                                 addressmodel.Zip + " " +
                                 addressmodel.PhoneNumber + " " +
-                                addressmodel.Email + " " 
+                                addressmodel.Email + " " +
+                                addressmodel.AddressBookName + " " +
+                                addressmodel.AddressBookType + " "
                                 );
                         }
                     }
@@ -274,6 +278,8 @@ namespace AddressBookDB_ADO.net
                             addressmodel.Zip = datareader.GetString(6);
                             addressmodel.PhoneNumber = datareader.GetString(7);
                             addressmodel.Email = datareader.GetString(8);
+                            addressmodel.AddressBookName = datareader.GetString(9);
+                            addressmodel.AddressBookType = datareader.GetString(10);
 
                             Console.WriteLine(addressmodel.FirstName + " " +
                                 addressmodel.LastName + " " +
@@ -282,7 +288,9 @@ namespace AddressBookDB_ADO.net
                                 addressmodel.State + " " +
                                 addressmodel.Zip + " " +
                                 addressmodel.PhoneNumber + " " +
-                                addressmodel.Email + " "
+                                addressmodel.Email + " " +
+                                addressmodel.AddressBookName + " " +
+                                addressmodel.AddressBookType + " "
                                 );
                         }
                     }
@@ -317,6 +325,8 @@ namespace AddressBookDB_ADO.net
                             addressmodel.Zip = datareader.GetString(6);
                             addressmodel.PhoneNumber = datareader.GetString(7);
                             addressmodel.Email = datareader.GetString(8);
+                            addressmodel.AddressBookName = datareader.GetString(9);
+                            addressmodel.AddressBookType = datareader.GetString(10);
 
                             Console.WriteLine(addressmodel.FirstName + " " +
                                 addressmodel.LastName + " " +
@@ -325,7 +335,9 @@ namespace AddressBookDB_ADO.net
                                 addressmodel.State + " " +
                                 addressmodel.Zip + " " +
                                 addressmodel.PhoneNumber + " " +
-                                addressmodel.Email + " "
+                                addressmodel.Email + " " +
+                                addressmodel.AddressBookName + " " +
+                                addressmodel.AddressBookType + " "
                                 );
                         }
                     }
@@ -360,6 +372,8 @@ namespace AddressBookDB_ADO.net
                             addressmodel.Zip = datareader.GetString(6);
                             addressmodel.PhoneNumber = datareader.GetString(7);
                             addressmodel.Email = datareader.GetString(8);
+                            addressmodel.AddressBookName = datareader.GetString(9);
+                            addressmodel.AddressBookType = datareader.GetString(10);
 
                             Console.WriteLine(addressmodel.FirstName + " " +
                                 addressmodel.LastName + " " +
@@ -368,7 +382,9 @@ namespace AddressBookDB_ADO.net
                                 addressmodel.State + " " +
                                 addressmodel.Zip + " " +
                                 addressmodel.PhoneNumber + " " +
-                                addressmodel.Email + " "
+                                addressmodel.Email + " " +
+                                addressmodel.AddressBookName + " " +
+                                addressmodel.AddressBookType + " "
                                 );
                         }
                     }
@@ -439,6 +455,16 @@ namespace AddressBookDB_ADO.net
             {
                 Console.WriteLine(e.Message);
             }
+        }
+        public void AddContactAsFriendAndFamily()
+        {
+            SqlConnection Connection = new SqlConnection(@"Data Source=LAPTOP-2UH1FDRP\MSSQLSERVER01; Initial Catalog =AddressBookForADO; Integrated Security = True;");
+            connection.Open();
+            string query = @"Insert into AddressBook Values ('Sai','Kiran','XYZ Colony','Alwal','AP','000002','9000000004','Sai@gmail.com','School','Friend'),
+                            ('Sai','Kiran','XYZ Colony','Alwal','AP','000002','9000000004','Sai@gmail.com','School','Family');";
+            SqlCommand command = new SqlCommand(query, connection);
+            object res = command.ExecuteScalar();
+            connection.Close();
         }
     }
 }
