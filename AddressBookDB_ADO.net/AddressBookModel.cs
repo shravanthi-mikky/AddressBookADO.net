@@ -28,6 +28,7 @@ namespace AddressBookDB_ADO.net
     }
     public class PersonDetail1
     {
+        public int count { get; set; }
         public int PersonId { get; set; }
         public int AddressBookId { get; set; }
         public string FirstName { get; set; }
@@ -45,11 +46,15 @@ namespace AddressBookDB_ADO.net
     {
         public int PersonTypeId { get; set; }
         public string PersonType { get; set; }
+        public int AddressBookCount { get; set; }
+        public int PersonCount { get; set; }
+
     }
     public class PersonsDetail_Type1
     {
         public int PersonId { get; set; }
         public int PersonTypeId { get; set; }
+        public int PersonCount { get; set; }
     }
     public class Employee_Department1
     {
